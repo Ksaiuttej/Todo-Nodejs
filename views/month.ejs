@@ -1,0 +1,37 @@
+<%- include('partials/header.ejs') %>
+
+
+<%- include('partials/nav.ejs') %>
+
+<div class="todayBox">
+
+<div class="todayContent">
+
+ <div class="form-box">
+<form action="/submitMonth" method="post">
+        <input type="text" name="month_item" id="today-input" placeholder="Enter To-do Item" required>
+        <button type="submit" id="today-submit">Add</button>
+    </form>
+</div>   
+    <% if(locals.finalArray) {  %>
+        <div class="main_box">
+        <ul>
+            <% for(let i=0; i<finalArray.length;i++) { %>
+                <div class="box">
+                    <div class="sl_box"><p id="sl_no"><%= i+1 %></p></div>
+                    <!-- <input type="checkbox" class="item-checkbox"> -->
+                    <li class="item-label"><%= finalArray[i] %></li>
+                    <p class="item-close">X</p>
+                
+                </div>
+                <hr >
+                <% } %>
+        </ul>
+    </div>
+        <% } %>
+
+    </div>
+</div>
+    <script src="styles/index.js"></script> 
+
+<%- include('partials/footer.ejs') %>
