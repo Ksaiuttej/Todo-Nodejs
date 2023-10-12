@@ -10,13 +10,15 @@ const arr_item = [];
 const arr_items = [];
 const secretKey = randomBytes(64).toString('hex');
 
+
+
+app.use(express.static("public"));
+
 app.use(session({
     secret: secretKey,
     resave: false,
     saveUninitialized: true
   }));
-
-app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
