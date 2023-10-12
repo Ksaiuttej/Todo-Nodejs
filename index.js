@@ -19,6 +19,12 @@ app.use(session({
     saveUninitialized: true
   }));
 
+app.use(session({
+    secret: secretKey,
+    resave: false,
+    saveUninitialized: true
+  }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req,res) => {
