@@ -11,7 +11,7 @@ const arr_items = [];
 const secretKey = randomBytes(64).toString('hex');
 
 app.use(session({
-    secret: 'your-secret-key',
+    secret: secretKey,
     resave: false,
     saveUninitialized: true
   }));
@@ -25,27 +25,27 @@ app.get("/", (req,res) => {
 })
 
 app.get("/today", (req,res) => {
-    res.render("today.ejs",{finalArray : req.session.items})
+    res.render("today.ejs",{finalArray :req.session.today_items})
 })
 
 app.post("/submitToday", (req,res) => {
-    if (!req.session.items) {
-        req.session.items = [];
+    if (!req.session.today_items) {
+        req.session.today_items = [];
       }
-      req.session.items.push(req.body.today_item)
-    res.render("today.ejs",{finalArray : req.session.items})
+      req.session.today_items.push(req.body.today_item)
+    res.render("today.ejs",{finalArray : req.session.today_items})
 })
 
 app.get("/month", (req,res) => {
-    res.render("month.ejs",{finalArray : req.session.items})
+    res.render("month.ejs",{finalArray : req.session.month_items})
 })
 
 app.post("/submitMonth", (req,res) => {
-    if (!req.session.items) {
-        req.session.items = [];
+    if (!req.session.month_items) {
+        req.session.month_items = [];
       }
-      req.session.items.push(req.body.month_item)
-    res.render("month.ejs",{finalArray : req.session.items})
+      req.session.month_items.push(req.body.month_item)
+    res.render("month.ejs",{finalArray : req.session.month_items})
 })
 
 
